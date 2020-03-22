@@ -9,11 +9,12 @@ on:
 jobs:
 
   Build-Test-Deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
       PROJECT_DIRECTORY_PATH: "TestGithubActions"
-      COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}/msdeploy.axd?site=${{ secrets.WEBSITE_NAME }}
+      COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
+      IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
       SERVER_USERNAME: ${{ secrets.IIS_SERVER_USERNAME }}
       SERVER_PASSWORD: ${{ secrets.IIS_SERVER_PASSWORD }}
       RECYCLE_APP_NAME: ${{ secrets.RECYCLE_APP_NAME }}
@@ -28,7 +29,7 @@ jobs:
         dotnet-version: 3.1.101
         
     - name: Checking environment variables...
-      uses: ./
+      run: sh ./entrypoint.sh
         
     - name: Build with dotnet
       run: dotnet publish
@@ -41,10 +42,10 @@ jobs:
     
     - name: Stop Application Pool
       shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{env.RECYCLE_APP_NAME}}",recycleMode="StopAppPool",computerName="${{ env.COMPUTER_NAME }}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",AuthType="Basic"'
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{env.RECYCLE_APP_NAME}}",recycleMode="StopAppPool",computerName="${{ env.COMPUTER_NAME }}/msdeploy.axd?site=/${{ env.IIS_WEBSITE_NAME }}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",AuthType="Basic"'
     - name: Deploy Application
       shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:contentPath="%CD\%${{ env.PROJECT_DIRECTORY_PATH }}\bin\Release\netcoreapp3.1\" -dest:contentPath="${{ env.CONTENTPATH }}",computerName="${{env.COMPUTER_NAME}}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",authtype="Basic"'
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:contentPath="%CD\%${{ env.PROJECT_DIRECTORY_PATH }}\bin\Release\netcoreapp3.1\" -dest:contentPath="${{ env.CONTENTPATH }}",computerName="${{ env.COMPUTER_NAME }}/msdeploy.axd?site=/${{ env.IIS_WEBSITE_NAME }}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",authtype="Basic"'
     - name: Start Application Pool
       shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ env.RECYCLE_APP_NAME }}",recycleMode="StartAppPool",computerName="${{ env.COMPUTER_NAME }}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",AuthType="Basic"'   
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ env.RECYCLE_APP_NAME }}",recycleMode="StartAppPool",computerName="${{ env.COMPUTER_NAME }}/msdeploy.axd?site=/${{ env.IIS_WEBSITE_NAME }}",username="${{ env.SERVER_USERNAME }}",password="${{ env.SERVER_PASSWORD }}",AuthType="Basic"'
