@@ -24,8 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Checking environment variables...
-      uses: ./
+   
 
     - name: Dotnet actions...
       uses: ./dotnetcore.yml
