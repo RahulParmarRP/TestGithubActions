@@ -1,7 +1,9 @@
    
 jobs:
+  Dotnet-Build-Test-Deploy:
     runs-on: windows-latest
-    
+
+    steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
