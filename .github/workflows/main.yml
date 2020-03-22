@@ -6,21 +6,21 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
-  PROJECT_DIRECTORY_PATH: "TestGithubActions"
-  COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
-  IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
-  SERVER_USERNAME: ${{ secrets.IIS_SERVER_USERNAME }}
-  SERVER_PASSWORD: ${{ secrets.IIS_SERVER_PASSWORD }}
-  RECYCLE_APP_NAME: ${{ secrets.RECYCLE_APP_NAME }}
-  CONTENTPATH: ${{ secrets.WEBSITE_CONTENT_PATH }}
 
 jobs:
 
   Build-Test-Deploy:
     runs-on: ubantu-latest
-
+    env:
+      PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
+      PROJECT_DIRECTORY_PATH: "TestGithubActions"
+      COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
+      IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
+      SERVER_USERNAME: ${{ secrets.IIS_SERVER_USERNAME }}
+      SERVER_PASSWORD: ${{ secrets.IIS_SERVER_PASSWORD }}
+      RECYCLE_APP_NAME: ${{ secrets.RECYCLE_APP_NAME }}
+      CONTENTPATH: ${{ secrets.WEBSITE_CONTENT_PATH }}
+      
     steps:
     - uses: actions/checkout@v2
 
