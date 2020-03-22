@@ -20,15 +20,12 @@ jobs:
       SERVER_PASSWORD: ${{ secrets.IIS_SERVER_PASSWORD }}
       RECYCLE_APP_NAME: ${{ secrets.RECYCLE_APP_NAME }}
       CONTENTPATH: ${{ secrets.WEBSITE_CONTENT_PATH }}
-      
+
     steps:
     - uses: actions/checkout@v2
 
     - name: Checking environment variables...
       uses: ./
-
-    - name: Dotnet actions
-      uses: ./dotnetcore.yml
 
     - name: Pass or Failed
       run: echo "Pass or Failed"
