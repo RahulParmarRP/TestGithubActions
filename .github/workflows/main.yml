@@ -10,7 +10,7 @@ on:
 jobs:
 
   Build-Test-Deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
       PROJECT_DIRECTORY_PATH: "TestGithubActions"
