@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     env:
       PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
-      PROJECT_DIRECTORY_PATH: "TestGithubActions"
+      PROJECT_DIRECTORY_PATH: 
       COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
       IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
       SERVER_USERNAME: ${{ secrets.IIS_SERVER_USERNAME }}
