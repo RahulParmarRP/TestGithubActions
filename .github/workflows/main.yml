@@ -10,7 +10,7 @@ on:
 jobs:
 
   Build-Test-Deploy:
-    runs-on: ubantu-latest
+    runs-on: windows-latest
     env:
       PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
       PROJECT_DIRECTORY_PATH: "TestGithubActions"
