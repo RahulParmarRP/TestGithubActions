@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Checking environment...
-      uses: ./
+      uses: RahulParmarRP/dotnet-build-test-msdeploy@master
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
