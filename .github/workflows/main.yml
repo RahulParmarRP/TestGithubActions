@@ -6,13 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
-
 jobs:
 
   Build-Test-Deploy:
     runs-on: ubuntu-latest
     env:
-      PROJECT_CSPROJ_FILE_PATH: "TestGithubActions/TestGithubActions.csproj"
       PROJECT_DIRECTORY_PATH: "TestGithubActions"
       COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
       IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
@@ -24,10 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-   
-
-    - name: Dotnet actions...
-      uses: ./dotnetcore.yml
+    - name: Checking environment...
+      uses: ./
 
     - name: Pass or Failed
       run: echo "Pass or Failed"
