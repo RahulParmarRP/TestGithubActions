@@ -11,7 +11,7 @@ jobs:
   Build-Test-Deploy:
     runs-on: windows-latest
     env:
-      PROJECT_DIRECTORY_PATH: 
+      PROJECT_DIRECTORY_PATH: "TestGithubActions"
       COMPUTER_NAME: ${{ secrets.IIS_SERVER_COMPUTER_NAME }}
       IIS_WEBSITE_NAME: ${{ secrets.WEBSITE_NAME }}
       SERVER_USERNAME: ${{ secrets.IIS_SERVER_USERNAME }}
