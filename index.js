@@ -3,6 +3,8 @@ const fs = require("fs");
 
 try {
 
+    core.debug(`Started performing action...`);
+
     const PROJECT_DIRECTORY_PATH = `${process.env.PROJECT_DIRECTORY_PATH}`;
 
     // Make sure path to source code directory is available
