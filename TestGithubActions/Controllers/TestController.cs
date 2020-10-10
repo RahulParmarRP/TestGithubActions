@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
 namespace TestGithubActions.Controllers
 {
@@ -30,7 +30,7 @@ namespace TestGithubActions.Controllers
         [Route("add/{a}/{b}")]
         public IActionResult Add(int a, int b)
         {
-            return Ok(a+b);
+            return Ok(a + b);
         }
 
         [HttpGet]
