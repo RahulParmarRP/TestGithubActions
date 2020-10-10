@@ -1,8 +1,2 @@
 # Test   Github   Actions
-TestGithubActions
-added secret
-updates 
-updates
-updates
-updates
-updates7
+TestGithubActions - Example to test .NET dotnet-build-test-msdeploy
